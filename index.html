@@ -42,26 +42,22 @@
   .grid-3{grid-template-columns:1fr;}
   @media (min-width:900px){ .grid-2{grid-template-columns:7fr 5fr;} .grid-3{grid-template-columns:repeat(3,1fr);} }
 
-  /* Card list */
+  /* Cards */
   .card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:24px; box-shadow:var(--shadow); transition:transform .15s ease, box-shadow .2s ease;}
   .card:hover{transform:translateY(-2px); box-shadow:0 12px 30px rgba(0,0,0,.08);}
   .card h3{margin:.25rem 0 0.5rem; font-size:18px;}
   .card ul{margin:0; padding-left:1.2rem;}
   .card li{margin:.35rem 0;}
 
-  /* Decorative box (swap to <img> later if you want) */
-  .artbox{
-    height:300px; border:1px solid var(--line); border-radius:16px; position:relative; overflow:hidden; background:#f5f6f8;
+  /* Animated SVG background (your chosen URL) */
+  .hero-svg-bg{
+    height:220px; border:1px solid var(--line); border-radius:16px; overflow:hidden;
+    background-image:url('https://cdn.svgator.com/images/2022/06/use-svg-as-background-image-particle-strokes.svg');
+    background-size:cover; background-position:center; background-repeat:no-repeat;
+    filter:brightness(.98) contrast(1.05);
   }
-  .artbox::before, .artbox::after{
-    content:""; position:absolute; inset:-20%;
-    background:conic-gradient(from 180deg at 50% 50%, rgba(0,0,0,.06), rgba(0,0,0,.01), rgba(0,0,0,.06));
-    animation:spin 12s linear infinite; mix-blend:multiply;
-  }
-  .artbox::after{animation-direction:reverse; opacity:.6;}
-  @keyframes spin{to{transform:rotate(360deg)}}
 
-  /* Reveal on scroll (default visible; JS adds transition) */
+  /* Reveal (default visible; JS adds .hidden first then reveals) */
   .reveal{opacity:1; transform:none; transition:all .5s ease;}
   .reveal.hidden{opacity:0; transform:translateY(12px);}
 
@@ -72,11 +68,8 @@
   .footer{border-top:1px solid var(--line); padding:28px 0; color:#6b7280; font-size:14px;}
 </style>
 
-<!-- No-JS fallback: keep everything visible -->
 <noscript>
-  <style>
-    .reveal, .reveal.hidden { opacity: 1 !important; transform: none !important; }
-  </style>
+  <style>.reveal,.reveal.hidden{opacity:1!important;transform:none!important;}</style>
 </noscript>
 </head>
 <body>
@@ -85,9 +78,7 @@
   <header class="header">
     <div class="container" style="display:flex; align-items:center; justify-content:space-between; padding:12px 16px;">
       <a href="#home" class="brand-wrap">
-        <!-- RELATIVE PATHS for project pages: assets/... -->
-        <img src="assets/rose-digital-logo.png" alt="Rose Digital logo" class="logo"
-             onerror="this.style.display='none'">
+        <img src="assets/rose-digital-logo.png" alt="Rose Digital logo" class="logo" onerror="this.style.display='none'">
         <span style="font-weight:900; font-size:40px; letter-spacing:-.02em;">ROSE DIGITAL</span>
       </a>
       <nav class="nav">
@@ -114,10 +105,8 @@
             <a class="btn btn-ghost" href="#services">Explore services</a>
           </div>
         </div>
-        <div class="reveal">
-          <!-- Decorative box (you can replace with a hero <img> later) -->
-          <div class="artbox"></div>
-        </div>
+        <!-- Animated background block (no assets required) -->
+        <div class="reveal hero-svg-bg"></div>
       </div>
     </div>
   </section>
@@ -170,27 +159,29 @@
     <div class="container pad">
       <h2 class="reveal" style="font-size:36px;">Case snapshot</h2>
 
-      <!-- Client logo (RELATIVE PATH) -->
-      <div class="reveal" style="margin:10px 0 14px;">
+      <!-- Single consolidated card for all phases -->
+      <div class="card reveal" style="position:relative;">
+        <!-- Optional logo (hidden if missing) -->
         <img src="assets/washington-times.png" alt="The Washington Times logo"
-             class="client-logo" onerror="this.style.display='none'">
-      </div>
+             class="client-logo" onerror="this.style.display='none'" style="position:absolute; right:24px; top:24px; height:48px;">
+        <div class="chip" style="margin-bottom:10px;">The Washington Times</div>
+        <p class="muted" style="margin:6px 0 18px;">
+          Accelerated Salesforce modernization through a three-phase approach improving usability, data integrity, and automation.
+        </p>
 
-      <p class="muted reveal" style="margin:0 0 20px; max-width:900px;">
-        Accelerated Salesforce modernization through a three-phase approach improving usability, data integrity, and automation.
-      </p>
-      <div class="grid" style="gap:18px;">
-        <div class="card reveal">
-          <strong>Phase 1: System Health Check and Audit</strong>
-          <ul><li>Audit Report</li><li>Process Review</li><li>Best Practice Recommendations</li></ul>
-        </div>
-        <div class="card reveal">
-          <strong>Phase 2: Lightning Migration</strong>
-          <ul><li>Lightning Transition, Training, and Reporting</li><li>Reporting and Dashboard Coaching</li><li>Tailored Training</li></ul>
-        </div>
-        <div class="card reveal">
-          <strong>Phase 3: Data Cleanup and Process Implementation</strong>
-          <ul><li>Account Deduplication</li><li>Standardized Data Process</li><li>Data Automation Recommendations</li></ul>
+        <div style="display:grid; gap:14px;">
+          <div>
+            <strong>Phase 1: System Health Check and Audit</strong>
+            <ul><li>Audit Report</li><li>Process Review</li><li>Best Practice Recommendations</li></ul>
+          </div>
+          <div>
+            <strong>Phase 2: Lightning Migration</strong>
+            <ul><li>Lightning Transition, Training, and Reporting</li><li>Reporting and Dashboard Coaching</li><li>Tailored Training</li></ul>
+          </div>
+          <div>
+            <strong>Phase 3: Data Cleanup and Process Implementation</strong>
+            <ul><li>Account Deduplication</li><li>Standardized Data Process</li><li>Data Automation Recommendations</li></ul>
+          </div>
         </div>
       </div>
     </div>
@@ -227,41 +218,29 @@
   // Year
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Safer reveal: default visible; JS adds the 'hidden' class first, then reveals with IntersectionObserver
+  // Safer reveal: JS adds .hidden first, then reveals via IntersectionObserver
   (function initReveal(){
     const els = Array.from(document.querySelectorAll('.reveal'));
     els.forEach(el => el.classList.add('hidden'));
-
     function revealNow(el){ el.classList.remove('hidden'); }
-
-    if (!('IntersectionObserver' in window)) {
-      els.forEach(revealNow);
-      return;
-    }
-
+    if (!('IntersectionObserver' in window)) { els.forEach(revealNow); return; }
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
         if(e.isIntersecting){ revealNow(e.target); io.unobserve(e.target); }
       });
     }, { threshold:.15 });
-
     els.forEach(el=>{
       io.observe(el);
       const rect = el.getBoundingClientRect();
       if (rect.top < window.innerHeight * 0.9) revealNow(el);
     });
-
-    // Failsafe
-    setTimeout(()=>{
-      if (!document.querySelector('.reveal:not(.hidden)')) els.forEach(revealNow);
-    }, 1000);
+    setTimeout(()=>{ if (!document.querySelector('.reveal:not(.hidden)')) els.forEach(revealNow); }, 1000);
   })();
 
-  // Simple scroll spy highlight
+  // Simple scroll spy
   (function initSpy(){
     const navLinks = Array.from(document.querySelectorAll('[data-nav]'));
     const sections = ['services','work','about'].map(id=>document.getElementById(id)).filter(Boolean);
-
     function spy(){
       let current = null;
       for(const sec of sections){
