@@ -13,6 +13,27 @@
 <link rel="icon" type="image/png" href="favicon.png">
 <style>
 
+.copy-popup {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #111827;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+.copy-popup.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+  
 /* Absolute clamp for the header logo */
 .brand-wrap .logo-icon {
   width: 32px !important;
@@ -291,5 +312,21 @@ img { max-width: 100%; height: auto; }
     document.addEventListener('scroll', spy, {passive:true});
   })();
 </script>
+  <div id="copyPopup" class="copy-popup">Email copied: armond.bisignani@gmail.com</div>
+
+  <script>
+function copyEmail() {
+  const email = "armond.bisignani@gmail.com";
+  const popup = document.getElementById("copyPopup");
+  navigator.clipboard.writeText(email).then(() => {
+    popup.classList.add("show");
+    setTimeout(() => popup.classList.remove("show"), 2000);
+  }).catch(() => {
+    alert(email);
+  });
+}
+</script>
+
+  
 </body>
 </html>
