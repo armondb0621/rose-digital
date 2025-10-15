@@ -1,43 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Rose Digital</title>
+<style>
+  :root{
+    --bg:#ffffff; --text:#0a0a0a; --muted:#6b7280; --line:#e5e7eb; --ink:#111827;
+    --accent:#000000; --card:#ffffff; --shadow:0 10px 25px rgba(0,0,0,.05);
+  }
+  html { scroll-behavior:smooth; }
+  body { margin:0; font:16px/1.6 Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:var(--text); background:var(--bg); }
+  a { color:inherit; text-decoration:none; }
+  .container{max-width:1120px; margin:0 auto; padding:0 16px;}
+  .btn{display:inline-block; padding:10px 18px; border-radius:999px; font-weight:600; font-size:14px;}
+  .btn-primary{background:var(--accent); color:#fff;}
+  .btn-primary:hover{opacity:.9}
+  .btn-ghost{border:1px solid #d1d5db;}
+  .btn-ghost:hover{background:#f3f4f6}
+  .chip{display:inline-flex; align-items:center; gap:8px; padding:6px 12px; border:1px solid #e5e7eb; border-radius:999px; background:#fafafa; color:#374151; font-size:13px;}
+
+  /* Header */
+  .header{position:sticky; top:0; z-index:50; backdrop-filter:saturate(180%) blur(8px);
+          background:rgba(255,255,255,.85); border-bottom:1px solid var(--line);}
+  .nav{display:flex; gap:24px; align-items:center;}
+  .nav a{padding-bottom:6px; border-bottom:2px solid transparent; font-size:14px;}
+  .nav a.active{border-bottom-color:#000; font-weight:600;}
+  .brand-wrap{display:flex; align-items:center; gap:10px;}
+  .logo{height:36px; width:auto; display:block; border-radius:8px;}
+
+  /* Sections */
+  section{border-top:1px solid var(--line);}
+  .hero{border-top:none;}
+  .pad-hero{padding:80px 0;}
+  .pad{padding:80px 0;}
+  .h1{font-size:48px; line-height:1.1; letter-spacing:-.02em; margin:0;}
+  @media (min-width:900px){ .h1{font-size:60px;} }
+  .muted{color:var(--muted);}
+  .grid{display:grid; gap:24px;}
+  .grid-2{grid-template-columns:1fr;}
+  .grid-3{grid-template-columns:1fr;}
+  @media (min-width:900px){ .grid-2{grid-template-columns:7fr 5fr;} .grid-3{grid-template-columns:repeat(3,1fr);} }
+
+  /* Card list */
+  .card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:24px; box-shadow:var(--shadow); transition:transform .15s ease, box-shadow .2s ease;}
+  .card:hover{transform:translateY(-2px); box-shadow:0 12px 30px rgba(0,0,0,.08);}
+  .card h3{margin:.25rem 0 0.5rem; font-size:18px;}
+  .card ul{margin:0; padding-left:1.2rem;}
+  .card li{margin:.35rem 0;}
+
+  /* Decorative box (swap to <img> later if you want) */
+  .artbox{
+    height:300px; border:1px solid var(--line); border-radius:16px; position:relative; overflow:hidden; background:#f5f6f8;
+  }
+  .artbox::before, .artbox::after{
+    content:""; position:absolute; inset:-20%;
+    background:conic-gradient(from 180deg at 50% 50%, rgba(0,0,0,.06), rgba(0,0,0,.01), rgba(0,0,0,.06));
+    animation:spin 12s linear infinite; mix-blend:multiply;
+  }
+  .artbox::after{animation-direction:reverse; opacity:.6;}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* Reveal on scroll (default visible; JS adds transition) */
+  .reveal{opacity:1; transform:none; transition:all .5s ease;}
+  .reveal.hidden{opacity:0; transform:translateY(12px);}
+
+  /* Client logo */
+  .client-logo{height:64px; width:auto; display:block;}
+
+  /* Footer */
+  .footer{border-top:1px solid var(--line); padding:28px 0; color:#6b7280; font-size:14px;}
+</style>
+
+<!-- No-JS fallback: keep everything visible -->
+<noscript>
+  <style>
+    .reveal, .reveal.hidden { opacity: 1 !important; transform: none !important; }
+  </style>
+</noscript>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between; padding:12px 16px;">
+      <a href="#home" class="brand-wrap">
+        <!-- RELATIVE PATHS for project pages: assets/... -->
+        <img src="assets/rose-digital-logo.png" alt="Rose Digital logo" class="logo"
+             onerror="this.style.display='none'">
+        <span style="font-weight:900; font-size:40px; letter-spacing:-.02em;">ROSE DIGITAL</span>
+      </a>
+      <nav class="nav">
+        <a href="#services" data-nav>Services</a>
+        <a href="#work" data-nav>Work</a>
+        <a href="#about" data-nav>About</a>
+        <a class="btn btn-primary" href="mailto:armond.bisignani@gmail.com">Book intro</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <div class="container pad-hero">
+      <div class="grid grid-2">
+        <div>
+          <h1 class="h1 reveal">Salesforce &amp; AI, shipped fast.</h1>
+          <p class="muted reveal" style="margin-top:14px; max-width:640px;">
+            We maximize your Salesforce ROI by optimizing processes, boosting user adoption,
+            and transforming data into actionable revenue-driving insights.
+          </p>
+          <div class="reveal" style="margin-top:22px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn btn-primary" href="mailto:armond.bisignani@gmail.com">Start a 20-min intro</a>
+            <a class="btn btn-ghost" href="#services">Explore services</a>
+          </div>
+        </div>
+        <div class="reveal">
+          <!-- Decorative box (you can replace with a hero <img> later) -->
+          <div class="artbox"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="container pad">
+      <h2 class="reveal" style="font-size:36px;">Services</h2>
+      <p class="muted reveal" style="margin:0 0 24px;">Comprehensive Salesforce and AI capabilities to streamline operations and drive impact.</p>
+      <div class="grid grid-3">
+        <div class="card reveal">
+          <h3>Automation</h3>
+          <ul>
+            <li>Workflow rules</li><li>Approval processes</li><li>Email templates</li><li>Lead escalation rules</li><li>Case escalation rules</li>
+          </ul>
+        </div>
+        <div class="card reveal">
+          <h3>Improve Customer Management</h3>
+          <ul>
+            <li>Lead qualification</li><li>Opportunity pipeline</li><li>Accounts & contacts cleanup</li><li>Activity customization</li><li>Sales forecasting</li>
+          </ul>
+        </div>
+        <div class="card reveal">
+          <h3>Service & Support</h3>
+          <ul>
+            <li>Case management</li><li>SLAs (Service Level Agreements)</li><li>Knowledge base</li><li>Omni-channel routing</li><li>Einstein AI</li>
+          </ul>
+        </div>
+        <div class="card reveal">
+          <h3>Collaboration & Productivity</h3>
+          <ul>
+            <li>Chatter</li><li>Files & document management</li><li>Mobile app</li><li>Training</li><li>Reports & dashboards</li>
+          </ul>
+        </div>
+        <div class="card reveal">
+          <h3>Salesforce AI</h3>
+          <ul>
+            <li>Einstein Copilot: conversational AI assistant</li>
+            <li>Sales AI: lead scoring & automation</li>
+            <li>Marketing AI: journey personalization</li>
+            <li>Service AI: intelligent support</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work -->
+  <section id="work">
+    <div class="container pad">
+      <h2 class="reveal" style="font-size:36px;">Case snapshot</h2>
+
+      <!-- Client logo (RELATIVE PATH) -->
+      <div class="reveal" style="margin:10px 0 14px;">
+        <img src="assets/washington-times.png" alt="The Washington Times logo"
+             class="client-logo" onerror="this.style.display='none'">
+      </div>
+
+      <p class="muted reveal" style="margin:0 0 20px; max-width:900px;">
+        Accelerated Salesforce modernization through a three-phase approach improving usability, data integrity, and automation.
+      </p>
+      <div class="grid" style="gap:18px;">
+        <div class="card reveal">
+          <strong>Phase 1: System Health Check and Audit</strong>
+          <ul><li>Audit Report</li><li>Process Review</li><li>Best Practice Recommendations</li></ul>
+        </div>
+        <div class="card reveal">
+          <strong>Phase 2: Lightning Migration</strong>
+          <ul><li>Lightning Transition, Training, and Reporting</li><li>Reporting and Dashboard Coaching</li><li>Tailored Training</li></ul>
+        </div>
+        <div class="card reveal">
+          <strong>Phase 3: Data Cleanup and Process Implementation</strong>
+          <ul><li>Account Deduplication</li><li>Standardized Data Process</li><li>Data Automation Recommendations</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founder -->
+  <section id="about">
+    <div class="container pad">
+      <h2 class="reveal" style="font-size:36px;">Founder</h2>
+      <div class="card reveal" style="max-width:760px;">
+        <div style="font-weight:700;">Armond Bisignani</div>
+        <div class="muted" style="font-size:14px;">Founder, Rose Digital · Washington, DC</div>
+        <p style="margin-top:10px;">
+          I build clean, fast, no-nonsense solutions in Salesforce and AI. Small by design: direct access, rapid cycles,
+          and measurable outcomes. With 15+ years leading digital transformation and Salesforce programs, I help organizations
+          simplify complexity and accelerate delivery through thoughtful automation and AI-driven insights.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container" style="display:flex; gap:16px; align-items:center; justify-content:space-between; flex-wrap:wrap;">
+      <div>© <span id="year"></span> Rose Digital</div>
+      <div style="display:flex; gap:18px;">
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+      </div>
+    </div>
+  </footer>
+
 <script>
   // Year
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Helpers
-  function revealNow(el){ el.classList.add('show'); }
-
-  // If IntersectionObserver isn’t available or page is in an iframe where it never fires,
-  // we still show the content.
-  function safeReveal(){
+  // Safer reveal: default visible; JS adds the 'hidden' class first, then reveals with IntersectionObserver
+  (function initReveal(){
     const els = Array.from(document.querySelectorAll('.reveal'));
+    els.forEach(el => el.classList.add('hidden'));
+
+    function revealNow(el){ el.classList.remove('hidden'); }
+
     if (!('IntersectionObserver' in window)) {
       els.forEach(revealNow);
       return;
     }
+
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
         if(e.isIntersecting){ revealNow(e.target); io.unobserve(e.target); }
       });
-    }, { threshold: .15 });
+    }, { threshold:.15 });
 
-    // Show anything already in/near viewport right away
     els.forEach(el=>{
       io.observe(el);
       const rect = el.getBoundingClientRect();
       if (rect.top < window.innerHeight * 0.9) revealNow(el);
     });
 
-    // Failsafe: after 1s, if nothing revealed yet, show all
+    // Failsafe
     setTimeout(()=>{
-      if (!document.querySelector('.reveal.show')) els.forEach(revealNow);
+      if (!document.querySelector('.reveal:not(.hidden)')) els.forEach(revealNow);
     }, 1000);
-  }
+  })();
 
-  // Scroll spy (safe even if sections are already shown)
-  function initSpy(){
+  // Simple scroll spy highlight
+  (function initSpy(){
     const navLinks = Array.from(document.querySelectorAll('[data-nav]'));
-    const sections = ['services','work','about']
-      .map(id=>document.getElementById(id))
-      .filter(Boolean);
+    const sections = ['services','work','about'].map(id=>document.getElementById(id)).filter(Boolean);
 
     function spy(){
       let current = null;
@@ -52,11 +275,7 @@
     }
     spy();
     document.addEventListener('scroll', spy, {passive:true});
-  }
-
-  // Init
-  document.addEventListener('DOMContentLoaded', ()=>{
-    safeReveal();
-    initSpy();
-  });
+  })();
 </script>
+</body>
+</html>
