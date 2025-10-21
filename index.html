@@ -168,8 +168,7 @@ img { max-width: 100%; height: auto; }
   <a
     class="btn btn-primary"
     href="mailto:armond.bisignani@gmail.com?subject=Free%20Salesforce%20Health%20Check%20Request&body=Hi%20Armond,%0A%0AI'd%20like%20to%20schedule%20a%20free%20Salesforce%20Health%20Check.%20Please%20let%20me%20know%20your%20availability.%0A%0AThank%20you!"
-    target="_blank"
-    rel="noopener noreferrer"
+    onclick="return openIntroEmail(this);"
   >
     <span class="btn-title">Start a 20-min Intro</span>
     <span class="btn-sub">Includes Free Salesforce Health Check</span>
@@ -330,18 +329,31 @@ img { max-width: 100%; height: auto; }
 </script>
   <div id="copyPopup" class="copy-popup">Email copied: armond.bisignani@gmail.com</div>
 
-  <script>
-function copyEmail() {
-  const email = "armond.bisignani@gmail.com";
-  const popup = document.getElementById("copyPopup");
-  navigator.clipboard.writeText(email).then(() => {
-    popup.classList.add("show");
-    setTimeout(() => popup.classList.remove("show"), 2000);
-  }).catch(() => {
-    alert(email);
-  });
+<script>
+function openIntroEmail(anchor){
+  // Try to open default mail client
+  try {
+    window.location.href = anchor.href;
+  } catch (e) {}
+  // Fallback: if nothing happens (common on locked-down browsers), copy email + show toast
+  setTimeout(() => {
+    // Heuristic: if still on the same page and no mail client opened, help the user
+    if (document.visibilityState === 'visible') {
+      // Try Gmail compose as a soft fallback in a new tab
+      const gmailURL = "https://mail.google.com/mail/?view=cm&fs=1" +
+        "&to=armond.bisignani@gmail.com" +
+        "&su=" + encodeURIComponent("Free Salesforce Health Check Request") +
+        "&body=" + encodeURIComponent("Hi Armond,\n\nI'd like to schedule a free Salesforce Health Check. Please let me know your availability.\n\nThank you!");
+      const win = window.open(gmailURL, '_blank');
+      // If popups are blocked or user isn't on Gmail, at least copy the email
+      if (!win) { copyEmail(); }
+    }
+  }, 200);
+  // Prevent default anchor navigation
+  return false;
 }
 </script>
+
 
   
 </body>
