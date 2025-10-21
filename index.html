@@ -163,17 +163,45 @@ img { max-width: 100%; height: auto; }
             and transforming data into actionable revenue-driving insights.
           </p>
           
-         
-<div class="mt-8" style="display:flex;flex-wrap:wrap;gap:12px;">
-  <a
-    class="btn btn-primary"
-    href="mailto:armond.bisignani@gmail.com?subject=Free%20Salesforce%20Health%20Check%20Request&body=Hi%20Armond,%0A%0AI'd%20like%20to%20schedule%20a%20free%20Salesforce%20Health%20Check.%20Please%20let%20me%20know%20your%20availability.%0A%0AThank%20you!"
-    onclick="return openIntroEmail(this);"
-  >
-    <span class="btn-title">Start a 20-min Intro</span>
-    <span class="btn-sub">Includes Free Salesforce Health Check</span>
-  </a>
-</div>
+         <script>
+function showCopyToast(){
+  const popup = document.getElementById('copyPopup');
+  if (!popup) return;
+  popup.classList.add('show');
+  setTimeout(() => popup.classList.remove('show'), 2000);
+}
+
+function openIntroEmail(){
+  const email = "armond.bisignani@gmail.com";
+  const subject = "Free Salesforce Health Check Request";
+  const body =
+    "Hello,\n\nI'm interested in the Salesforce Health Check offer on your site. " +
+    "Please let me know your availability.\n\nBest,\n[Your Name]";
+
+  // 1) Always copy + toast for instant feedback
+  navigator.clipboard.writeText(email).then(showCopyToast).catch(() => alert(email));
+
+  // 2) Try default mail client
+  const mailto = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  try { window.location.href = mailto; } catch (e) {}
+
+  // 3) Fallback: Gmail compose in a new tab if mailto didn't take over
+  setTimeout(() => {
+    if (document.visibilityState === 'visible') {
+      const gmail = "https://mail.google.com/mail/?view=cm&fs=1"
+        + `&to=${encodeURIComponent(email)}`
+        + `&su=${encodeURIComponent(subject)}`
+        + `&body=${encodeURIComponent(body)}`;
+      const w = window.open(gmail, "_blank", "noopener");
+      // if popups blocked, we already copied the email + showed the toast
+    }
+  }, 300);
+
+  return false; // prevent default anchor nav
+}
+</script>
+
+          
           
         </div>
         <!-- Animated background block (no assets required) -->
