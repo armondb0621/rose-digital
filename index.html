@@ -343,7 +343,7 @@ function openIntroEmail(anchor){
       const gmailURL = "https://mail.google.com/mail/?view=cm&fs=1" +
         "&to=armond.bisignani@gmail.com" +
         "&su=" + encodeURIComponent("Free Salesforce Health Check Request") +
-        "&body=" + encodeURIComponent("Hi Armond,\n\nI'd like to schedule a free Salesforce Health Check. Please let me know your availability.\n\nThank you!");
+        "&body=" + encodeURIComponent("\n\nI'd like to schedule a free Salesforce Health Check. Please let me know your availability.\n\nThank you!");
       const win = window.open(gmailURL, '_blank');
       // If popups are blocked or user isn't on Gmail, at least copy the email
       if (!win) { copyEmail(); }
