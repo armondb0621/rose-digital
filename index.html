@@ -77,7 +77,14 @@ h2{ margin: 0 0 10px !important; }
     height: 80px;
   }
 }
-    
+
+/* ROI cards: 1 col mobile, 2x2 desktop */
+.grid-2x2{ grid-template-columns: 1fr; }
+
+@media (min-width: 900px){
+  .grid-2x2{ grid-template-columns: repeat(2, 1fr); }
+}
+   
 </style>
 
 /* 4-card layout: 2x2 on desktop, 1-col on mobile */
@@ -315,7 +322,7 @@ and transforming data into actionable revenue-driving insights.
 <div class="container pad">
 <h2 class="reveal" style="font-size:36px;">How We Unlock ROI</h2>
 <p class="muted reveal" style="margin:0 0 24px;">We run focused performance sprints that diagnose bottlenecks, deploy targeted automation, and validate AI use cases directly within your Salesforce environment.</p>
-<div class="grid grid-4">
+<div class="grid grid-2x2">
 <div class="card reveal">
 <h3>System Performance Audit</h3>
 <ul>
