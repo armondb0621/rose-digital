@@ -12,6 +12,13 @@
 <title>Rose Digital</title>
 <link rel="icon" type="image/png" href="favicon.png">
 
+/* 4-card layout: 2x2 on desktop, 1-col on mobile */
+.grid-4{ grid-template-columns: 1fr; }
+
+@media (min-width: 900px){
+  .grid-4{ grid-template-columns: repeat(2, 1fr); }
+}
+  
   <style>
   /* your existing CSS... */
 
@@ -306,7 +313,7 @@ and transforming data into actionable revenue-driving insights.
 <div class="container pad">
 <h2 class="reveal" style="font-size:36px;">How We Unlock ROI</h2>
 <p class="muted reveal" style="margin:0 0 24px;">We run focused performance sprints that diagnose bottlenecks, deploy targeted automation, and validate AI use cases directly within your Salesforce environment.</p>
-<div class="grid grid-3">
+<div class="grid grid-4">
 <div class="card reveal">
 <h3>System Performance Audit</h3>
 <ul>
