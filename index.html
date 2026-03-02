@@ -11,6 +11,32 @@
   <meta property="og:image" content="https://armondb0621.github.io/rose-digital/favicon.png" />
   <link rel="icon" type="image/png" href="favicon.png" />
 
+  /* Stable background grid (no flicker) */
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: .22;
+
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+
+  /* compositing stability */
+  transform: translate3d(0,0,0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform;
+}
+
+/* Ensure all site content sits above the grid */
+header, main, footer{
+  position: relative;
+  z-index: 1;
+}
   <style>
     :root{
       --bg:#07090d;
@@ -284,7 +310,6 @@
 </head>
 
 <body>
-  <div class="grid-overlay"></div>
 
   <header>
     <div class="wrap">
