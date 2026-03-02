@@ -206,7 +206,7 @@ ROSE DIGITAL
  
 <nav class="nav" id="siteNav">
   
-<a href="#services" data-nav>Services</a>
+<a href="#services" data-nav>How We Unlock ROI</a>
 <a href="#work" data-nav>Work</a>
 <a href="#about" data-nav>About</a>
 <a href="#" class="btn btn-primary" onclick="return openIntroEmail();">Book intro</a>
@@ -226,7 +226,7 @@ ROSE DIGITAL
 <div class="container pad-hero">
 <div class="grid grid-2">
 <div>
-<h1 class="h1 reveal">Salesforce &amp; AI, shipped fast.</h1>
+<h1 class="h1 reveal">Performance engineering for Salesforce</h1>
 <p class="muted reveal" style="margin-top:14px; max-width:640px;">
 We maximize your Salesforce ROI by optimizing processes, boosting user adoption,
 and transforming data into actionable revenue-driving insights.
@@ -245,46 +245,6 @@ onclick="return openIntroEmail();"
 </div>
 
 
-<script>
-function showCopyToast(){
-const popup = document.getElementById('copyPopup');
-if (!popup) return;
-popup.classList.add('show');
-setTimeout(() => popup.classList.remove('show'), 2000);
-}
-
-function openIntroEmail(){
-const email = "armond.bisignani@gmail.com";
-const subject = "Free Salesforce Health Check Request";
-const body =
-"Hello,\n\nI'm interested in the Salesforce Health Check offer on your site. " +
-"Please let me know your availability.\n\nBest,\n[Your Name]";
-
-// 1) Always copy + toast for instant feedback
-navigator.clipboard.writeText(email).then(showCopyToast).catch(() => alert(email));
-
-// 2) Try default mail client
-const mailto = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-try { window.location.href = mailto; } catch (e) {}
-
-// 3) Fallback: Gmail compose in a new tab if mailto didn't take over
-setTimeout(() => {
-if (document.visibilityState === 'visible') {
-const gmail = "https://mail.google.com/mail/?view=cm&fs=1"
-+ `&to=${encodeURIComponent(email)}`
-+ `&su=${encodeURIComponent(subject)}`
-+ `&body=${encodeURIComponent(body)}`;
-const w = window.open(gmail, "_blank", "noopener");
-// if popups blocked, we already copied the email + showed the toast
-}
-}, 300);
-
-return false; // prevent default anchor nav
-}
-</script>
-
-
-
 </div>
 <!-- Animated background block (no assets required) -->
 <div class="reveal hero-svg-bg"></div>
@@ -295,40 +255,35 @@ return false; // prevent default anchor nav
 <!-- Services -->
 <section id="services">
 <div class="container pad">
-<h2 class="reveal" style="font-size:36px;">Services</h2>
-<p class="muted reveal" style="margin:0 0 24px;">Comprehensive Salesforce and AI capabilities to streamline operations and drive impact.</p>
+<h2 class="reveal" style="font-size:36px;">How We Unlock ROI</h2>
+<p class="muted reveal" style="margin:0 0 24px;">We run focused performance sprints that diagnose bottlenecks, deploy targeted automation, and validate AI use cases directly within your Salesforce environment.</p>
 <div class="grid grid-3">
 <div class="card reveal">
-<h3>Automation</h3>
+<h3>System Performance Audit</h3>
 <ul>
-<li>Workflow rules</li><li>Approval processes</li><li>Email templates</li><li>Lead escalation rules</li><li>Case escalation rules</li>
+<li>Configuration review</li><li>Workflow mapping</li><li>Reporting gap analysis</li><li>Adoption friction identification</li><li>Revenue leakage detection</li>
 </ul>
 </div>
 <div class="card reveal">
-<h3>Improve Customer Management</h3>
+<h3>Operational Optimization</h3>
 <ul>
-<li>Lead qualification</li><li>Opportunity pipeline</li><li>Accounts & contacts cleanup</li><li>Activity customization</li><li>Sales forecasting</li>
+<li>Process redesign</li><li>Automation refinement</li><li>Data cleanup and governance</li><li>Reporting and dashboard restructuring</li><li>Sales and service alignment</li>
 </ul>
 </div>
 <div class="card reveal">
-<h3>Service & Support</h3>
+<h3>AI Acceleration and Rapid Prototyping</h3>
 <ul>
-<li>Case management</li><li>SLAs (Service Level Agreements)</li><li>Knowledge base</li><li>Omni-channel routing</li><li>Einstein AI</li>
+<li>AI use case identification</li><li>In-platform AI pilots (Einstein, Copilot, custom integrations)</li><li>Lead scoring & prioritization models</li><li>Service triage automation</li><li>v</li>
 </ul>
 </div>
 <div class="card reveal">
-<h3>Collaboration & Productivity</h3>
+<h3>Adoption & Revenue Alignment</h3>
 <ul>
-<li>Chatter</li><li>Files & document management</li><li>Mobile app</li><li>Training</li><li>Reports & dashboards</li>
+<li>Role-based enablement</li><li>KPI alignment</li><li>Executive reporting redesign</li><li>Ongoing performance optimization</li><li>
 </ul>
 </div>
 <div class="card reveal">
 <h3>Salesforce AI</h3>
-<ul>
-<li>Einstein Copilot: conversational AI assistant</li>
-<li>Sales AI: lead scoring & automation</li>
-<li>Marketing AI: journey personalization</li>
-<li>Service AI: intelligent support</li>
 </ul>
 </div>
 </div>
