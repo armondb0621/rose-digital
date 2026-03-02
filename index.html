@@ -24,6 +24,47 @@
   }
   /* etc... */
 
+/* =========================
+   EXTRA TIGHT SPACING (override)
+   ========================= */
+
+/* Section padding */
+.pad-hero{ padding: 44px 0 !important; }
+.pad{ padding: 44px 0 !important; }
+
+@media (max-width: 900px){
+  .pad-hero{ padding: 32px 0 !important; }
+  .pad{ padding: 32px 0 !important; }
+}
+
+/* Header height (helps perceived whitespace) */
+.header .container{
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+
+/* Typography rhythm */
+.h1{ margin-bottom: 10px !important; }
+p{ margin: 10px 0 12px !important; }
+h2{ margin: 0 0 10px !important; }
+.muted{ margin-top: 6px !important; }
+
+/* Grids + cards */
+.grid{ gap: 12px !important; }
+@media (min-width: 900px){
+  .grid{ gap: 14px !important; }
+}
+
+.card{ padding: 16px !important; }
+.card h3{ margin: 4px 0 8px !important; }
+.card li{ margin: .25rem 0 !important; }
+
+/* Hero visual block slightly shorter */
+.hero-svg-bg{ height: 170px !important; }
+@media (max-width: 600px){
+  .hero-svg-bg{ height: 140px !important; }
+}
+    
 </style>
 <style>
 
